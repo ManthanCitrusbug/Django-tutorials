@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="../static/js/validation.js"></script>
+    <!-- <script src="js/jquery.js"></script>
+    <script defer src="js/jq.js"></script> -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>FILL THE FORM</h1>
+    <!-- <div id="confirm_submition"></div> -->
+    <div  id="submit">
+        <form action="" onsubmit="return validate()">
+            <div class="label_name">
+                <label for="">Name :</label><br><br>
+                <input type="text" id="name" autocomplete="off" class="input_area" placeholder="Name" autofocus tabindex="1"><br>
+                <!-- <span id="error_form" class="error"></span> -->
+                <span id="error_name" class="error"></span>
+                
+            </div><br>
+            <div class="label_name">
+                <label for="">Age :</label><br><br>
+                <input type="number" id="age" autocomplete="off" class="input_area" placeholder="Age" tabindex="2" autofocus min="1" max="99"/><br>
+                <!-- <span id="error_form" class="error"></span> -->
+                <span id="error_age" class="error"></span>
+                
+            </div><br>
+            <div class="label_name">
+                <label for="">Phone Number :</label><br><br>
+                <input type="text" id="phone" autocomplete="off" class="input_area" placeholder="Phone Number" autofocus tabindex="3"><br>
+               <!--  <span id="error_form" class="error"></span> -->
+                <span id="error_phone" class="error"></span>
+                
+            </div><br>
+            <div class="label_name">
+                <label for="">Email :</label><br><br>
+                <input type="text" id="email" autocomplete="off" class="input_area" placeholder="Email" autofocus tabindex="4"><br>
+                <!-- <span id="error_form" class="error"></span> -->
+                <span id="error_email" class="error"></span>
+                
+            </div><br>
+            <div class="label_name">
+                <label for="">Password :</label><br><br>
+                <input type="text" id="password" autocomplete="off" class="input_area" placeholder="Password" autofocus tabindex="5"><br>
+                <!-- <span id="error_form" class="error"></span> -->
+                <span id="error_password" class="error"></span>
+                
+            </div><br>
+            <div class="label_name">
+                <label for="">Confirm Password :</label><br><br>
+                <input type="password" id="c_password" autocomplete="off" class="input_area" placeholder="Confirm Password" autofocus tabindex="6"><br>
+                <!-- <span id="error_form" class="error"></span> -->
+                <span id="error_c_password" class="error"></span>
+                
+            </div><br>
+            
+            <div class="label_name">
+                <a href="/first/try">
+                    <input type="submit" class="submit" value="Submit" id="form_submit">
+                </a>
+            </div>    
+        </form>
+    </div>
+    <!-- <script src="js/validate.js"></script> -->
+    
+</body>
+</html>
