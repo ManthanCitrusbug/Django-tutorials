@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="">Product Name :</label><br>
+        <input type="text" name="name" id="name"><br>
+        <label for="">Product Disctiption :</label><br>
+        <input type="textarea" name="disc" id="name"><br>
+        <label for="">Product Image :</label><br>
+        <input type="file" name="image" id="name"><br>
+        <label for="">Product Price :</label><br>
+        <input type="text" name="price" id="name"><br>
+        <label for="">Product Category :</label><br>
+        <select name="category" id="category">
+            {% for category in category %}
+            <option name="">{{category.name}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit">
+    </form>
+</body>
+</html>
