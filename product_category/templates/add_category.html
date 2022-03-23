@@ -3,9 +3,13 @@
 {% block profile %}
 
 <h1 class="text-center">Add Category</h1>
-<form action="" class="form-control text-center form-label" autocomplete="off" method="POST">
+<form action="" class="form-control text-center form-label" autocomplete="off" method="POST" id="register_form">
     {% csrf_token %}
-    {{form.as_p}}
+    <div class="form-group">
+        <label for="exampleInputEmail1">Category Name</label><br><br>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Category Name" name="category_name" autocomplete="off"><br>
+        <span class="text-danger">{{category}}</span>
+    </div><br>
     <input type="submit" class="btn btn-success btn-lg">
 </form>
 

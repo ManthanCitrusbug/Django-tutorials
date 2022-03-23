@@ -1,0 +1,48 @@
+{% extends 'profile_page.html' %}
+
+{% block profile %}
+
+
+<div class="jumbotron jumbotron-fluid mt-5">
+    <div class="container pt-5">
+        <h1 class="display-4">Home Page</h1>
+        <p class="lead">All Products...</p>
+        <!-- <input type="" class="btn btn-outline-success float-right" value="Add Product">
+            <input type="" class="btn btn-outline-primary float-right" value="Add Category"> -->
+            <!-- <a href="{% url 'addproduct' %}" class="btn btn-outline-success">Add Product</a>
+                <a href="{% url 'addcategory' %}" class="btn btn-outline-primary">Add Category</a> -->
+            </div>
+        </div><br>
+        
+{% for stu in addproduct_list %}
+        
+<div class="card-deck mt-3">
+    <div class="card">
+      <img class="card-img-top" src="{{stu.product_image.url}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{stu.product_name}}</h5>
+        <p class="card-text">{{stu.product_discription}}</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+
+{% endfor %}
+
+
+<nav aria-label="Page navigation example" class="mt-5 mb-5">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">Previous</a></li>
+        {% endif %}
+      <!-- <li class="page-item"><a class="page-link" href="#">{{page_obj.number}}</a></li>
+      <li class="page-link">Of</li>
+      <li class="page-item"><a class="page-link" href="#">{{page_obj.paginator.num_pages}}</a></li> -->
+      {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a></li>
+      {% endif %}
+    </ul>
+</nav>
+
+
+{% endblock %}

@@ -1,3 +1,9 @@
+# from django.core.urlresolvers import reverse_lazy
+from operator import mod
+from urllib import request
+from django import views
+from django.views.generic import DeleteView, UpdateView, ListView
+from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib.auth.models import User
@@ -35,13 +41,10 @@ class LoginUser(View):
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username,password=password)
-        print(user)
         if user is not None:
             login(request,user)
-            print('login')
             return redirect('profile')
         else:
-            print('error')
             return render(request,'login.html')
     def get(self,request):
         return render(request,'login.html')
@@ -49,7 +52,9 @@ class LoginUser(View):
 
 class Profile(View):
     def get(self,request):
-        return render(request,'profile_page.html')
+        user_name = User.objects.get(pk=request.user.id)
+        user_data = AddProduct.objects.filter(user=user_name)
+        return render(request,'profile_page.html',{'user_data':user_data})
 
 
 class LogoutUser(View):
@@ -58,28 +63,47 @@ class LogoutUser(View):
         return redirect('login')
         
 
-class AddProduct(View):
+class AddProductView(View):
     def get(self,request):
-        form = ProductForm()
-        return render(request,'add_product.html',{'form':form})
+        user_name = User.objects.get(pk=request.user.id)
+        category = Category.objects.filter(user=user_name)
+        return render(request,'add_product.html',{'category':category})
     def post(self,request):
         name = request.POST['product_name']
         discription = request.POST['product_discription']
         image = request.POST['product_image']
         price = request.POST['product_price']
         category = request.POST['product_category']
-        product_data = AddProduct(product_name=name, product_discription=discription, product_image=image, product_price=price, product_category=category)
-        print(product_data)
-        # product_data.save()
+        category_val = Category.objects.get(category_name=category)
+        user_name = User.objects.get(pk=request.user.id)
+        product_data = AddProduct(product_name=name, product_discription=discription, product_image=image, product_price=price, product_category=category_val,user=user_name)
+        # print(user_id)
+        product_data.save()
         return redirect('profile')
 
 
 class AddCategory(View):
     def get(self,request):
-        form = CategoryForm()
-        return render(request,'add_category.html',{'form':form})
+        return render(request,'add_category.html')
     def post(self,request):
         name = request.POST['category_name']
-        category_data = Category(category_name=name)
-        category_data.save()
+        user_name = User.objects.get(pk=request.user.id)
+        if Category.objects.filter(category_name__icontains=name).exists():
+            category_error = "Category is already exists..."
+            return render(request,'add_category.html',{'category':category_error})
+        else:
+            category_data = Category(category_name=name,user=user_name)
+            category_data.save()
         return redirect('profile')
+
+class DeleteProduct(DeleteView):
+    model = AddProduct
+    template_name = 'delete.html'
+    success_url = reverse_lazy('profile')
+
+class HomePageView(ListView):
+    model = AddProduct
+    template_name = 'home_page.html'
+    paginate_by = 5
+
+    

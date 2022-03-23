@@ -10,4 +10,4 @@ class CategoryForm(forms.ModelForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = AddProduct
-        fields = '__all__'
+        fields = ['product_name','product_discription','product_image','product_price','product_category']

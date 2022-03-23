@@ -3,11 +3,39 @@
 {% block profile %}
 <h1 class="text-center">Add Product</h1>
 
-<form action="" class="form-control text-center form-label" autocomplete="off" method="POST">
+<!-- <form action="" class="form-control text-center form-label" autocomplete="off" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" class="btn btn-success btn-lg">
-</form>
+</form> -->
+
+    <form class="form-control" id="register_form" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1">Product Name</label><br>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Name" name="product_name" autocomplete="off"><br>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Product Discription</label><br>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Product Discription" name="product_discription" autocomplete="off"></textarea><br>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Product Image</label><br>
+            <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Product Image" name="product_image" autocomplete="off"><br>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Product Price</label><br>
+            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Product Price" name="product_price" autocomplete="off"><br>
+        </div>
+        <label for="">Categoris</label><br>
+        <select name="product_category" id="" class="btn btn-secondary dropdown-toggle" name="product_category">
+            {% for category in category %}
+            <option value="{{category.category_name}}">{{category.category_name}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
 {% endblock %}
 

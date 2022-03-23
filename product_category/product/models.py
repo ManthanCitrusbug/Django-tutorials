@@ -5,6 +5,7 @@ from django.contrib.auth.models import User ,AbstractUser
 
 class Category(models.Model):
     category_name = models.CharField(max_length=100)
+    user = models.CharField(max_length=100,default="")
 
     def __str__(self):
         return self.category_name
@@ -16,6 +17,7 @@ class AddProduct(models.Model):
     product_image = models.ImageField(upload_to = 'image')
     product_price = models.PositiveIntegerField()
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE,default="")
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default="")
 
     def __str__(self):
         return self.product_name

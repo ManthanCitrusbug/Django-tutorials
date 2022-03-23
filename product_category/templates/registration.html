@@ -48,10 +48,9 @@
                 <input type="password" class="form-control" id="c_password" placeholder="Confirm Password" name="c_password" autocomplete="off">
                 <span class="text-danger" id="error_c_password"></span>
             </div>
-            <input type="submit" class="btn btn-success btn-lg" value="Submit"> 
-        </form>
-
-        
+            <input type="submit" class="btn btn-success btn-lg" value="Submit">
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Log In</a> 
+        </form>     
     </section>
 
     <script src="{% static 'js/bootstrap.js' %}"></script>

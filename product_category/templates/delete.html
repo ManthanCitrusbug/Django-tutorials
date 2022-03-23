@@ -1,0 +1,10 @@
+{% extends 'profile_page.html' %}
+
+{% block profile %}
+<form action="" class="form-control text-center mt-5" method="POST">
+    {% csrf_token %}
+    <label for="" class="font-">You sure you wanna delete?</label><br><br>
+    <input type="submit" value="Confirm" class="btn btn-primary">
+    <a href="{% url 'profile' %}" class="btn btn-warning mx-3">Cancel</a>
+</form>
+{% endblock %}

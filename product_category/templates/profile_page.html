@@ -20,33 +20,34 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  Categoris
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  {% for user in user_data %}
+                  <li><a class="dropdown-item" href="#">{{user.product_category}}</a></li>
+                  {% endfor %}
                 </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'logout' %}">Log out</a>
               </li>
             </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex" method="GET">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" autocomplete="off">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
         </div>
       </nav>
+
+
       {% block profile %}
       <div class="jumbotron jumbotron-fluid mt-5">
         <div class="container pt-5">
@@ -58,6 +59,21 @@
           <a href="{% url 'addcategory' %}" class="btn btn-outline-primary">Add Category</a>
         </div>
       </div>
+
+      <br><br><br>
+        {% for user in user_data %}
+      <div class="jumbotron m-5">
+        <h1 class="display-4">{{user.product_name}}</h1>
+        <img src="{{user.product_image.url}}" alt="">
+        <p class="lead">{{user.product_discription}}</p>
+        <hr class="my-4">
+        <p>{{user.product_price}}</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Details</a>
+        <a class="btn btn-warning btn-lg" href="#" role="button">Edit</a>
+        <a class="btn btn-danger btn-lg" href="{% url 'delete' user.id %}" role="button" method="POST">Delete</a>
+      </div>
+        {% endfor %}
+
       {% endblock %}
 
       <script src="{% static 'js/bootstrap.js' %}"></script>
